@@ -10,6 +10,7 @@ int energy=12;
 int age;
 //人生游戏初始化设定。
 //购买彩票
+//命运
 int fate()
 {
     int chance;
