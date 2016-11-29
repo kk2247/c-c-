@@ -10,16 +10,37 @@ int money;
 int warehouse=500;
 int energy=12;
 int age;
+struct repo
+{
+    char good[20];
+    int price;
+    int number;
+};
+int repo(char gn[],int fee,int number)
+{
+    int kucun=0;
+    struct repo thing[20];
+    int i=0,j;
+    kucun+=number;
+    if(kucun>600)
+    {
+        goto end;
+    }
+    strcpy(thing[i].good,gn);
+    i++;
+    thing[i].price=fee;
+    thing[i].number=number;
+    printf("仓库\n");
+    for(j=0;j<=i;j++)
+    {
+        printf("%.10s   %d        %d\n",thing[j].good,thing[j].price,thing[j].number);
+    }
+    end:
+    return 0;
+}
 //人生游戏初始化设定。
 //购买彩票
 //命运
-int ware(char goods[],int num)
-{
-    char inner[100][20];
-    int space[20];
-    strcpy(inner[lei],goods);
-    space[lei]=num;
-}
 int fate()
 {
     int chance;
@@ -248,15 +269,16 @@ char shopping()
                 scanf("%s",&answer1);
                 if(answer1=='y')
                 {
+                    temp=money;
                     money=money-sum;
-                    warehouse-=num;
                     if(money<=0||warehouse<=0)
                     {
                         printf("you can not buy them,because you don't have enough money or space\n");
+                        money=temp;
                         shopping();
                     }
                 }
-                ware(cho,num);
+                repo(cho,high_price[0],num);
                 printf("you have $%d now\n",money);
                 num=0;
                 sum=0;
@@ -1157,9 +1179,33 @@ int picture(int pic[],int n)
     }
     printf("------------------------------------------------------------------------------------------------------------->    price");
 }
-int sale()
+int sale(int temp1,int temp2,int temp3,int begin,int end)
 {
-
+    int choose;
+    char cho[10];
+    int i;
+    char shop[3][20][20]={{"wine","red wine","smoke","drink","peer","purple wine","book"},
+    {"gun","gold","silver","celephone","computer","televition","drug","tea","car"},
+    {"vegetable","meat","peroid","candy","chocklate","rice","medicine"}};
+    int price[20];           //9                                               9                                                         7
+    int high_price[20];
+    int great_price[15];
+    srand((int)time(0));
+    for(i=begin;i<=end;i++)
+    {
+        srand(time(0));
+        price[i]=rand()%temp1+1;
+    }
+    for(i=begin;i<=end;i++)
+    {
+        srand(time(0));
+        high_price[i]=rand()%temp2+1;
+    }
+    for(i=begin;i<=end;i++)
+    {
+        srand(time(0));
+        great_price[i]=rand()%temp1+1;
+    }
 }
 //生日
 int birthday()
@@ -1320,7 +1366,7 @@ int bank()
     {
         loan*=1.01;
     }
-    printf("your loan ")
+    printf("your loan ");
 }
 int main()
 {
